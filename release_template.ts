@@ -54,7 +54,7 @@ kind: CronJob
 metadata:
   name: ${ENV_VARS.releaseServiceName}
 spec:
-  schedule: "0 * * * *"
+  schedule: "0 0 * * *"
   timezone: "${ENV_VARS.timezoneIdentifier}"
   jobTemplate:
     spec:
