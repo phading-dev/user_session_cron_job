@@ -55,15 +55,24 @@ metadata:
   name: ${ENV_VARS.releaseServiceName}
 spec:
   schedule: "0 0 * * *"
+  concurrencyPolicy: Forbid
   timezone: "${ENV_VARS.timezoneIdentifier}"
   jobTemplate:
     spec:
       template:
         spec:
+          serviceAccountName: ${ENV_VARS.serviceAccount}
           containers:
           - name: ${ENV_VARS.releaseServiceName}
             image: gcr.io/phading-dev/${ENV_VARS.releaseServiceName}:latest
             imagePullPolicy: IfNotPresent
+            resources:
+              requests:
+                cpu: "${ENV_VARS.cpu}"
+                memory: "${ENV_VARS.memory}"
+              limits:
+                cpu: "${ENV_VARS.cpu}"
+                memory: "${ENV_VARS.memory}"
           restartPolicy: OnFailure
 `;
   writeFileSync(`${env}/service.yaml`, serviceTemplate);
