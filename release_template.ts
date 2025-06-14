@@ -56,7 +56,7 @@ metadata:
 spec:
   schedule: "0 0 * * *"
   concurrencyPolicy: Forbid
-  timezone: "${ENV_VARS.timezoneIdentifier}"
+  timeZone: "${ENV_VARS.timezoneIdentifier}"
   jobTemplate:
     spec:
       template:

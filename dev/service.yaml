@@ -5,7 +5,7 @@ metadata:
 spec:
   schedule: "0 0 * * *"
   concurrencyPolicy: Forbid
-  timezone: "Pacific/Pitcairn"
+  timeZone: "Pacific/Pitcairn"
   jobTemplate:
     spec:
       template:
@@ -15,4 +15,11 @@ spec:
           - name: user-session-cron-job
             image: gcr.io/phading-dev/user-session-cron-job:latest
             imagePullPolicy: IfNotPresent
+            resources:
+              requests:
+                cpu: "100m"
+                memory: "128Mi"
+              limits:
+                cpu: "100m"
+                memory: "128Mi"
           restartPolicy: OnFailure
